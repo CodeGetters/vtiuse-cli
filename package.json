@@ -1,19 +1,30 @@
 {
   "name": "vtiuse-cli",
   "version": "0.0.1",
-  "description": "vtiuse-cli",
+  "description": "Pull the cli of different vue3 project templates depending on the selection",
   "main": "index.js",
   "author": "JohnsonXin",
   "license": "MIT",
+  "bugs": "https://github.com/CodeGetters/vtiuse-cli/issues",
+  "keywords": [
+    "vue3",
+    "TS",
+    "template",
+    "cli",
+    "vtiuse",
+    "vtiuse-cli",
+    "auto-pull"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:CodeGetters/vtiuse-cli.git"
+  },
   "scripts": {
     "dev": "tsc && node lib/index.js",
     "build": "tsc",
     "lint": "eslint --ext .js .",
     "lint:fix": "eslint --fix --ext .js ."
   },
-  "files": [
-    "/lib"
-  ],
   "bin": {
     "vtiuse-cli": "./lib/index.js"
   },
@@ -27,6 +38,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@types/cross-spawn": "^6.0.2",
     "@types/fs-extra": "^11.0.1",
     "@types/inquirer": "^9.0.3",
     "@types/yargs": "^17.0.24",

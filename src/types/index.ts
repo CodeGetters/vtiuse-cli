@@ -4,3 +4,7 @@ export interface packInfo {
   command: string;
   action: (value?: any) => void;
 }
+
+export interface projectInfoType {
+  name?: string;
+}

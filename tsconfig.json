@@ -8,8 +8,6 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "outDir": "lib/"
   },
-  "files": ["src/types/type.d.ts"],
-
   "include": [".eslintrc.js", "src/*.ts", "src/types/*.d.ts"],
   // 不参与打包的目录
   "exclude": ["node_modules"]

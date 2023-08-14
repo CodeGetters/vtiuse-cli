@@ -1,3 +1,6 @@
 export default {
-  repository: "https://github.com/CodeGetters/vtiuse.git",
+  // repository address
+  repository: "git@github.com:CodeGetters/vtiuse.git",
+  // 仓库存放模版目录
+  targetDir: "src/api",
 };

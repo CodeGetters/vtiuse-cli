@@ -1,6 +1,8 @@
 <p align="center">
-    <img src="./public/vtiuse.svg" />
+    <img src="/public/vtiuse.svg" />
 </p>
+
+English|[简体中文](./README-ZH.md)
 
 <h1>vtiuse-cli</h1>
 

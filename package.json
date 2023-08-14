@@ -23,7 +23,8 @@
     "dev": "tsc && node lib/index.js",
     "build": "tsc",
     "lint": "eslint --ext .js .",
-    "lint:fix": "eslint --fix --ext .js ."
+    "lint:fix": "eslint --fix --ext .js .",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "bin": {
     "vtiuse-cli": "./lib/index.js"
@@ -32,18 +33,17 @@
     "@types/node": "^20.4.10",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
+    "commitizen": "^4.3.0",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@types/cross-spawn": "^6.0.2",
     "@types/fs-extra": "^11.0.1",
     "@types/inquirer": "^9.0.3",
     "@types/yargs": "^17.0.24",
     "commander": "^11.0.0",
-    "cross-spawn": "^7.0.3",
     "dotenv": "^16.3.1",
     "fs-extra": "^11.1.1",
     "inquirer": "^8.2.6",

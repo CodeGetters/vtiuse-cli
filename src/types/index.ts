@@ -6,5 +6,5 @@ export interface packInfo {
 }
 
 export interface projectInfoType {
-  name?: string;
+  name: string;
 }

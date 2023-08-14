@@ -1,6 +1,6 @@
-import inquirer from "inquirer";
-import chalk from "chalk";
 import fs from "fs";
+import chalk from "chalk";
+import inquirer from "inquirer";
 import { Command } from "commander";
 import type { projectInfoType } from "./types/index";
 
@@ -21,7 +21,9 @@ export const interactionCom = async () => {
 
   return new Promise<{ projectInfo: projectInfoType; templateType: string[] }>(
     (resolve, reject) => {
-      let projectInfo: projectInfoType = {};
+      let projectInfo: projectInfoType = {
+        name: "",
+      };
       let templateType: string[] = [];
 
       program.command("create <name>").action(async (name) => {
@@ -71,9 +73,6 @@ export const interactionCom = async () => {
         .description(chalk.cyan("Welcome to use vtiuse-cli 🎉"));
 
       program.parse();
-
-      // Handle parsing errors or other exceptional cases
-      // reject(new Error("Error message"));
     }
   );
 };

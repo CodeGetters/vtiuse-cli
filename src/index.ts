@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-// import yargs from "yargs";
-
 /**
  *
  * 返回包信息(version、help)
@@ -14,11 +12,21 @@
  *
  */
 import { interactionCom } from "./command";
-import { fileOperation } from "./fileOperation";
+import { cloneRep } from "./clone";
+import config from "./config";
+import fs from "fs-extra";
+// import fileOperation from "./fileOperation";
 
 const getInfo = async () => {
   const { projectInfo, templateType } = await interactionCom();
-  fileOperation(projectInfo);
+
+  // 创建文件夹
+  fs.mkdirSync(`./${projectInfo.name}`);
+
+  // 拉取项目模版
+  cloneRep(projectInfo, config.repository, config.targetDir);
+
+  // fileOperation();
 };
 
 getInfo();

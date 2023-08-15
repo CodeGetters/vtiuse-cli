@@ -1,4 +1,4 @@
-## 0.0.1 (2023-08-14)
+# [0.1.0](https://github.com/CodeGetters/vtiuse-cli/compare/17a06f5939ec96496fcc330e8d63f162d0902253...v0.1.0) (2023-08-14)
 
 ### Features
 

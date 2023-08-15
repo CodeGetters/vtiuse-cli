@@ -1,6 +1,6 @@
 {
   "name": "vtiuse-cli",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pull the cli of different vue3 project templates depending on the selection",
   "main": "index.js",
   "author": "JohnsonXin",

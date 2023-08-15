@@ -28,7 +28,6 @@ export const interactionCom = async () => {
 
       program.command("create <name>").action(async (name) => {
         const currentPaths = fs.readdirSync(process.cwd());
-
         // 检查当前目录下是否有这个文件夹
         // 如果有需要重新输入项目名
         while (currentPaths.includes(name)) {

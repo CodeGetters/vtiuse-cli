@@ -24,7 +24,7 @@
     "build": "tsc",
     "lint": "eslint --ext .js .",
     "lint:fix": "eslint --fix --ext .js .",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "bin": {
     "vtiuse-cli": "./lib/index.js"

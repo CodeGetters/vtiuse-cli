@@ -1,6 +1,6 @@
+import ora from "ora";
 import chalk from "chalk";
 import fileOperation from "./fileOperation";
-import ora from "ora";
 import { spawn } from "node:child_process";
 import type { projectInfoType } from "./types/index";
 
@@ -19,7 +19,7 @@ export const cloneRep = (
   const spinners = [ora("Loading...👀"), ora("Creating...😜")];
   spinners[0].start();
 
-  const cloneRep = spawn("git", ["clone", repository, `${fileInfo.name}_copy`]);
+  const cloneRep = spawn("git", ["clone", repository, `${fileInfo.name}`]);
 
   cloneRep.stderr.on("data", (data: string) => {
     console.error(`stderr: ${data}`);

@@ -8,7 +8,7 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
     "outDir": "lib/"
   },
-  "include": [".eslintrc.js", "src/*.ts", "src/types/*.d.ts"],
+  "include": [".eslintrc.js", "src/*.ts", "src/types/*.d.ts", "bump.config.ts"],
   // 不参与打包的目录
   "exclude": ["node_modules"]
 }

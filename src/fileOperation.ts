@@ -21,8 +21,13 @@ export default async (projectInfo: projectInfoType, templateType: string[]) => {
 
   const dirArr = config.targetDir.split("/");
   if (!(dirArr[0] == "")) {
-    // 深度搜索
     searchTargetFile(dirArr);
+
+    // 移动文件夹到顶层目录
+    moveFile(config.targetDir);
+
+    // 删除文件
+    fs.rmSync(path.join(process.cwd(), dirArr[0]), { recursive: true });
   }
 };
 
@@ -93,7 +98,15 @@ const deleteFile = (exclude: string, currentPath: string) => {
   });
 };
 
-// 移动目录下的所有文件夹/文件到顶层目录
-const moveFile = () => {
-  // fs.rename()
+/**
+ * 将目标目录下的所有文件/文件夹移动到顶层目录
+ *
+ * @param targetDir 目标目录
+ */
+const moveFile = (targetDir: string) => {
+  const currentPath = path.join(process.cwd(), targetDir);
+
+  fs.readdirSync(currentPath).forEach((file) => {
+    fs.rename(`${targetDir}/${file}`, `${file}`, (err) => {});
+  });
 };

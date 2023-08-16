@@ -1,5 +1,6 @@
 import fs from "fs";
 import chalk from "chalk";
+import config from "./config";
 import inquirer from "inquirer";
 import { Command } from "commander";
 import type { projectInfoType } from "./types/index";
@@ -16,7 +17,7 @@ import type { projectInfoType } from "./types/index";
  *
  */
 export const interactionCom = async () => {
-  const program = new Command();
+  const program: Command = new Command();
   const packageInfo = require("../package.json");
 
   return new Promise<{ projectInfo: projectInfoType; templateType: string[] }>(
@@ -26,49 +27,69 @@ export const interactionCom = async () => {
       };
       let templateType: string[] = [];
 
-      program.command("create <name>").action(async (name) => {
-        const currentPaths = fs.readdirSync(process.cwd());
-        // 检查当前目录下是否有这个文件夹
-        // 如果有需要重新输入项目名
-        while (currentPaths.includes(name)) {
-          const response = await inquirer.prompt({
-            type: "input",
-            name: "name",
-            message: chalk.cyan(
-              "This file name already exists, please re-enter 🤔"
-            ),
-          });
-          name = response.name;
-        }
-        projectInfo.name = name;
+      program
+        .command("create <name>")
+        .description("create Vue3 project from remote repo✨")
+        .action(async (name: string) => {
+          const currentPaths = fs.readdirSync(process.cwd());
 
-        // 模块集成的内容
-        const proInfo = await inquirer.prompt([
-          {
-            type: "checkbox",
-            name: "templateCon",
-            message: chalk.cyan(
-              "Select the template you need for your project 🎨"
-            ),
-            choices: [
-              { name: "ts", checked: true },
-              { name: "husky", checked: true },
-              { name: "cz", checked: true },
-              { name: "eslint", checked: true },
-              { name: "prettier", checked: true },
-              { name: "unocss", checked: true },
-              { name: "i18n", checked: true },
-            ],
-          },
-        ]);
-        templateType = proInfo.templateCon;
+          // 检查当前目录下是否有这个文件夹
+          // 如果有需要重新输入项目名
+          while (currentPaths.includes(name)) {
+            const response = await inquirer.prompt({
+              type: "input",
+              name: "name",
+              message: chalk.cyan(
+                "This file name already exists, please re-enter 🤔"
+              ),
+            });
+            name = response.name;
+          }
+          projectInfo.name = name;
 
-        resolve({ projectInfo, templateType });
-      });
+          // 模块集成的内容
+          const proInfo = await inquirer.prompt([
+            {
+              type: "checkbox",
+              name: "templateCon",
+              message: chalk.cyan(
+                "Select the template you need for your project 🎨"
+              ),
+              choices: [
+                { name: "ts", checked: true },
+                { name: "husky", checked: true },
+                { name: "cz", checked: true },
+                { name: "eslint", checked: true },
+                { name: "prettier", checked: true },
+                { name: "unocss", checked: true },
+                { name: "i18n", checked: true },
+              ],
+            },
+          ]);
+
+          templateType = proInfo.templateCon;
+
+          resolve({ projectInfo, templateType });
+        });
+
+      program
+        .command("repo")
+        .description("show remote repository")
+        .action(() => {
+          console.log(config.repository);
+        });
+
+      program
+        .command("target")
+        .description("show default targetDir")
+        .action(() => {
+          console.log(config.targetDir);
+        });
 
       program
         .version(packageInfo.version)
         .helpOption("-h, --help", "show help information")
+        .option("-r --repo", "show remote repository")
         .description(chalk.cyan("Welcome to use vtiuse-cli 🎉"));
 
       program.parse();

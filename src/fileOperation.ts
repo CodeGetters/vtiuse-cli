@@ -21,7 +21,7 @@ export default async (projectInfo: projectInfoType, templateType: string[]) => {
 
   const dirArr = config.targetDir.split("/");
   if (!(dirArr[0] == "")) {
-    searchTargetFile(dirArr);
+    operationTargetFile(dirArr);
 
     // 移动文件夹到顶层目录
     moveFile(config.targetDir);
@@ -44,39 +44,13 @@ export default async (projectInfo: projectInfoType, templateType: string[]) => {
  *
  * @param checkArr 目标路径数组
  */
-const searchTargetFile = (checkArr: string[]) => {
+const operationTargetFile = (checkArr: string[]) => {
   let pathLink: string = process.cwd();
 
   for (let i = 0; i < checkArr.length; i++) {
     deleteFile(checkArr[i], pathLink);
     pathLink = path.join(pathLink, checkArr[i]);
   }
-};
-
-/**
- * @description 复制目标文件夹到另外正式文件夹
- * @param targetDir 目标文件夹
- * @param sourceDir 正式文件夹
- * 复制文件夹
- */
-const copyFile = (sourceDir: string, targetDir: string) => {
-  fs.mkdirSync(targetDir, { recursive: true });
-  // 读取源文件夹中的内容
-  const files = fs.readdirSync(targetDir);
-  // 循环复制文件和子文件夹
-  files.forEach((file) => {
-    const sourcePath = `${sourceDir}/${file}`;
-    const targetPath = `${targetDir}/${file}`;
-    // 获取文件/文件夹的详细信息
-    const stats = fs.statSync(sourcePath);
-    if (stats.isFile()) {
-      // 如果是文件，则直接进行复制
-      fs.copyFileSync(sourcePath, targetPath);
-    } else if (stats.isDirectory()) {
-      // 如果是文件夹，则递归调用复制函数
-      copyFile(sourcePath, targetPath);
-    }
-  });
 };
 
 /**

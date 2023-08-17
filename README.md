@@ -10,7 +10,7 @@ English|[简体中文](./README-ZH.md)
 
 <h1>vtiuse-cli</h1>
 
-> A cli that can pull different vue3 project templates from a remote project template repository
+> A cli that can pull different vue3 project templates from a remote project template repository. It is mainly used for pulling fixed project templates (it can also be used for pulling subfolder under the warehouse). That is, when you have a project template that you want to pull under a monorepo repository, you can use this.
 
 ## Install
 
@@ -21,14 +21,28 @@ npm i vtiuse-cli -g
 ## Usage
 
 ```shell
+# pull templates from the default repository
 vtiuse-cli create <projectName>
+
+# Change the default repository address
+vtiuse-cli repo <newRepo>
+
+# Change the default target directory
+vtiuse-cli dir <newDir>
 ```
 
-## Note
+## 示例
 
-Currently, vtiuse-cli can only pull a fixed project template and has not integrated other templates.
+As an example, pull files in the src directory under the default repository
 
-So, this is just a sample version ❗❗❗.
+```sh
+npm i vtiuse-cli -g
+
+# Check the default target directory
+vtiuse-cli target
+
+vtiuse-cli create test
+```
 
 [npm-version-src]: https://img.shields.io/npm/v/vtiuse-cli
 [npm-version-href]: https://npmjs.com/package/vtiuse-cli

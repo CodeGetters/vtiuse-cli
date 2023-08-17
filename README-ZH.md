@@ -8,7 +8,7 @@
 
 <h1>vtiuse-cli</h1>
 
-> 一个可以从远程项目模版仓库中拉取不同 vue3 项目模版的 cli
+> 一个可以从远程项目模版仓库中拉取不同 vue3 项目模版的 cli。主要是用于拉取固定的项目模版(也可以用于拉取仓库下的子文件夹)。也就是说，当你有一个想要拉取一个 monorepo 仓库下的其中一个项目模版，你就可以使用这个。
 
 ## 下载
 
@@ -19,14 +19,29 @@ npm i vtiuse-cli -g
 ## 使用
 
 ```shell
+# 使用这个命令将会从默认仓库拉取模版
 vtiuse-cli create <projectName>
+
+# 使用这个命令将会修改默认仓库地址
+vtiuse-cli repo <newRepo>
+
+# 使用这个命令将会修改默认目标目录
+vtiuse-cli dir <newDir>
 ```
 
-## 注意
+## 示例
 
-vtiuse-cli 目前来说只能拉取一个固定的项目模版，还没有集成其他的模版。
+这里以拉取默认仓库下的 src 目录的文件作为示例
 
-所以，现在只是一个示例版本 ❗❗❗.
+```sh
+npm i vtiuse-cli -g
+
+# 检查默认的目标目录
+vtiuse-cli target
+
+# 拉取
+vtiuse-cli create test
+```
 
 [npm-version-src]: https://img.shields.io/npm/v/vtiuse-cli
 [npm-version-href]: https://npmjs.com/package/vtiuse-cli

@@ -73,23 +73,38 @@ export const interactionCom = async () => {
         });
 
       program
-        .command("repo")
-        .description("show remote repository")
+        .command("repoUrl")
+        .description("show remote repository Url")
         .action(() => {
-          console.log(config.repository);
+          console.log(chalk.cyan(`current repoUrl: ${config.repository} 💕`));
         });
 
       program
         .command("target")
         .description("show default targetDir")
         .action(() => {
-          console.log(config.targetDir);
+          console.log(chalk.cyan(`current dir: ${config.targetDir} 💕`));
+        });
+
+      program
+        .command("repo <newRepo>")
+        .description("modify the repoUrl")
+        .action(async (newRepo: string) => {
+          config.repository = newRepo;
+          console.log(chalk.cyan(`New repoUrl: ${config.repository} 🎈`));
+        });
+
+      program
+        .command("dir <newDir>")
+        .description("modify the targetDir")
+        .action(async (newDir: string) => {
+          config.targetDir = newDir;
+          console.log(chalk.cyan(`New tartDir: ${config.targetDir} 🎈`));
         });
 
       program
         .version(packageInfo.version)
         .helpOption("-h, --help", "show help information")
-        .option("-r --repo", "show remote repository")
         .description(chalk.cyan("Welcome to use vtiuse-cli 🎉"));
 
       program.parse();

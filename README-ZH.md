@@ -31,15 +31,17 @@ vtiuse-cli dir <newDir>
 
 ## 示例
 
-这里以拉取默认仓库下的 src 目录的文件作为示例
+这里以拉取 cli 仓库下的 src/index.ts 作为示例
 
 ```sh
 npm i vtiuse-cli -g
 
-# 检查默认的目标目录
-vtiuse-cli target
+# modify the pull repo
+vtiuse-cli repo git@github.com:CodeGetters/vtiuse-cli.git
 
-# 拉取
+# modify repo dir
+vtiuse-cli dir src/index.ts
+
 vtiuse-cli create test
 ```
 

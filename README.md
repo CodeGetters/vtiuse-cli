@@ -31,15 +31,18 @@ vtiuse-cli repo <newRepo>
 vtiuse-cli dir <newDir>
 ```
 
-## 示例
+## Example
 
-As an example, pull files in the src directory under the default repository
+As an example, pull down the src directory in the cli repository
 
 ```sh
 npm i vtiuse-cli -g
 
-# Check the default target directory
-vtiuse-cli target
+# modify the pull repo
+vtiuse-cli repo git@github.com:CodeGetters/vtiuse-cli.git
+
+# modify repo dir
+vtiuse-cli dir src/index.ts
 
 vtiuse-cli create test
 ```

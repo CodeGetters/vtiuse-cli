@@ -96,7 +96,7 @@ export const saveModify = (config: configType) => {
   // 存放包的目录
   const packageDir = path.dirname(require.resolve("vtiuse-cli"));
   // 包的位置
-  const packPath = join(packageDir, "/node_modules/vtiuse-cli/lib");
+  const packPath = join(packageDir, "/node_modules/vtiuse-cli");
 
   const updatedConfig = `"use strict";\n Object.defineProperty(exports, "__esModule", { value: true });\n exports.default = ${JSON.stringify(
     config,

@@ -93,14 +93,18 @@ const moveFile = (targetDir: string) => {
  * @param config 新的配置文件
  */
 export const saveModify = (config: configType) => {
-  // 保存修改
+  // 存放包的目录
+  const packageDir = path.dirname(require.resolve("vtiuse-cli"));
+  // 包的位置
+  const packPath = join(packageDir, "/node_modules/vtiuse-cli/lib");
+
   const updatedConfig = `"use strict";\n Object.defineProperty(exports, "__esModule", { value: true });\n exports.default = ${JSON.stringify(
     config,
     null,
     2
   )};`;
 
-  const currentPath = join(process.cwd(), "lib/config.js");
+  const currentPath = join(packPath, "lib/config.js");
   fs.writeFile(currentPath, updatedConfig, "utf8", (err) => {
     if (err) {
       console.error(err);

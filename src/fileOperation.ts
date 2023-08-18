@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import config from "./config";
-import path from "node:path";
-import type { projectInfoType } from "./types/index";
+import path, { join } from "node:path";
+import type { projectInfoType, configType } from "./types/index";
 
 /**
  * @description 对文件进行开启稀疏模式
@@ -64,9 +64,8 @@ const deleteFile = (exclude: string, currentPath: string) => {
     if (!(exclude === file)) {
       try {
         fs.rmSync(path.join(currentPath, file), { recursive: true });
-        console.log("file 删除成功", file);
       } catch (err) {
-        console.log("file 删除失败", file);
+        console.log("file operated failed", file);
       }
     }
   });
@@ -82,5 +81,30 @@ const moveFile = (targetDir: string) => {
 
   fs.readdirSync(currentPath).forEach((file) => {
     fs.rename(`${targetDir}/${file}`, `${file}`, (err) => {});
+  });
+};
+
+/**
+ *
+ * @description 将修改后的配置文件进行保存
+ *
+ * 这里的写入操作是覆盖写入操作(后期考虑换掉)
+ *
+ * @param config 新的配置文件
+ */
+export const saveModify = (config: configType) => {
+  // 保存修改
+  const updatedConfig = `"use strict";\n Object.defineProperty(exports, "__esModule", { value: true });\n exports.default = ${JSON.stringify(
+    config,
+    null,
+    2
+  )};`;
+
+  const currentPath = join(process.cwd(), "lib/config.js");
+  fs.writeFile(currentPath, updatedConfig, "utf8", (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
   });
 };

@@ -8,3 +8,7 @@ export interface packInfo {
 export interface projectInfoType {
   name: string;
 }
+
+export interface configType {
+  [key: string]: string;
+}

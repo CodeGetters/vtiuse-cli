@@ -4,6 +4,7 @@ import config from "./config";
 import inquirer from "inquirer";
 import { Command } from "commander";
 import type { projectInfoType } from "./types/index";
+import { saveModify } from "./fileOperation";
 
 /**
  *
@@ -53,16 +54,11 @@ export const interactionCom = async () => {
               type: "checkbox",
               name: "templateCon",
               message: chalk.cyan(
-                "Select the template you need for your project 🎨"
+                "Select the template you need for your project(experiment, just press <Enter>) 🎨"
               ),
               choices: [
                 { name: "ts", checked: true },
                 { name: "husky", checked: true },
-                { name: "cz", checked: true },
-                { name: "eslint", checked: true },
-                { name: "prettier", checked: true },
-                { name: "unocss", checked: true },
-                { name: "i18n", checked: true },
               ],
             },
           ]);
@@ -81,25 +77,27 @@ export const interactionCom = async () => {
 
       program
         .command("target")
-        .description("show default targetDir")
-        .action(() => {
+        .description("show targetDir")
+        .action(async () => {
           console.log(chalk.cyan(`current dir: ${config.targetDir} 💕`));
         });
 
       program
         .command("repo <newRepo>")
         .description("modify the repoUrl")
-        .action(async (newRepo: string) => {
+        .action((newRepo: string) => {
           config.repository = newRepo;
+          saveModify(config);
           console.log(chalk.cyan(`New repoUrl: ${config.repository} 🎈`));
         });
 
       program
         .command("dir <newDir>")
         .description("modify the targetDir")
-        .action(async (newDir: string) => {
+        .action((newDir: string) => {
           config.targetDir = newDir;
-          console.log(chalk.cyan(`New tartDir: ${config.targetDir} 🎈`));
+          saveModify(config);
+          console.log(chalk.cyan(`New targetDir: ${config.targetDir} 🎈`));
         });
 
       program

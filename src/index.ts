@@ -13,9 +13,5 @@ const getInfo = async () => {
   // 拉取项目模版
   cloneRep(projectInfo, config.repository, templateType);
 };
-const path = require("path");
-  const packageDir = path.dirname(require.resolve("vtiuse-cli"));
-  const pack = path.join(packageDir, "/node_modules/vtiuse-cli/lib");
-  console.log(pack);
 
-// getInfo();
+getInfo();
